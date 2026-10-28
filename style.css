@@ -1,0 +1,176 @@
+/* style.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+  padding: 16px;
+}
+
+.calculator {
+  width: 100%;
+  max-width: 420px;
+  background: #0f0f1a;
+  border-radius: 48px;
+  padding: 24px;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7), 
+              inset 0 1px 3px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+.display {
+  background: #1a1a2a;
+  padding: 24px 20px;
+  border-radius: 32px;
+  text-align: right;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #f0f3fa;
+  letter-spacing: 1px;
+  word-break: break-all;
+  word-wrap: break-word;
+  margin-bottom: 28px;
+  box-shadow: inset 0 8px 12px rgba(0, 0, 0, 0.5), 
+              inset 0 -2px 4px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-family: 'Fira Mono', 'Courier New', monospace;
+  transition: all 0.1s ease;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+/* Custom scrollbar for display if overflow */
+.display::-webkit-scrollbar {
+  height: 4px;
+}
+.display::-webkit-scrollbar-thumb {
+  background: #3a3a5a;
+  border-radius: 8px;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.btn {
+  border: none;
+  border-radius: 28px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 20px 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e1e2e;
+  color: #e8ecf5;
+  box-shadow: 0 6px 0 #0b0b12, 0 8px 16px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.btn:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #0b0b12, 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Operator buttons (right column) */
+.btn.operator {
+  background: #2a2a3c;
+  color: #ffb74d;
+  font-size: 2rem;
+  box-shadow: 0 6px 0 #15151f, 0 8px 16px rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+}
+
+.btn.operator:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #15151f, 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* Equal button */
+.btn.equal {
+  background: #ff9f1c;
+  color: #0f0f1a;
+  font-weight: 700;
+  box-shadow: 0 6px 0 #b16f00, 0 8px 16px rgba(255, 159, 28, 0.3);
+  grid-column: span 2;
+  font-size: 2rem;
+}
+
+.btn.equal:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 #b16f00, 0 6px 12px rgba(255, 159, 28, 0.3);
+}
+
+/* Zero button spans two columns? Actually we want zero to be normal, but the grid has 4 columns and we have 3 items in last row. 
+   The last row: zero, decimal, equals (equals spans 2). So zero and decimal are single, equals spans 2. 
+   That gives 4 columns total: 1+1+2 = 4. Perfect. 
+   So zero stays normal width. */
+
+/* Hover effects for non-touch */
+@media (hover: hover) {
+  .btn:hover {
+    filter: brightness(1.15);
+    transform: scale(0.98);
+  }
+  .btn:active {
+    transform: translateY(6px) scale(0.98);
+  }
+  .btn.equal:hover {
+    background: #ffb04d;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 420px) {
+  .calculator {
+    padding: 18px;
+    border-radius: 36px;
+  }
+  .display {
+    font-size: 2.8rem;
+    padding: 20px 16px;
+    min-height: 100px;
+  }
+  .btn {
+    font-size: 1.5rem;
+    padding: 16px 0;
+    border-radius: 22px;
+  }
+  .btn.operator {
+    font-size: 1.8rem;
+  }
+  .buttons-grid {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .display {
+    font-size: 2.2rem;
+    padding: 16px 12px;
+  }
+  .btn {
+    font-size: 1.3rem;
+    padding: 14px 0;
+  }
+}
